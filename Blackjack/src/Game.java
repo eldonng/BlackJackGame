@@ -11,6 +11,12 @@ public class Game {
     private boolean computerWinFlag;
     private String message;
 
+    private static String BET_PROMPT_MESSAGE ="Please enter the amount you want to bet: ";
+    private static String INVALID_BET = "The amount entered cannot more than your balance, or be a negative number." +
+            "Please try again.";
+    private static String VALID_BET = "Amount Betted: %1$s, Player Credit Balance: %2$s";
+    private static String PLAYER_BALANCE = "Player's Current Balance: %1$s";
+
     private static String WINNING_MESSAGE = "Player Wins, Wins Bet.";
     private static String WINNING_DOUBLE_MESSAGE = "Player Wins, Wins Double Bet.";
     private static String WINNING_TRIPLE_MESSAGE = "Player Wins, Wins Triple Bet.";
@@ -29,14 +35,20 @@ public class Game {
     }
 
     public void newGame() {
-        numGamesPlayed++;
+
+        Card drawnCard;
+        int betAmount;
+
         deck = new Deck();
-        player = new Player();
-        computer = new Player();
+        player.resetGame();
+        computer.resetGame();
         computerWinFlag = false;
         playerWinFlag = false;
         message = "";
-        Card drawnCard;
+        numGamesPlayed++;
+
+
+        betAmount = playerBet();
 
         for (int i = 0; i < 2; i++) {
             drawnCard = deck.drawRandomCardFromDeck();
@@ -234,5 +246,27 @@ public class Game {
 
     public int getGamesWon() {
         return gamesWon;
+    }
+
+    private int playerBet() {
+        boolean validBet = false;
+        int betAmount;
+
+        do {
+            System.out.println(String.format(PLAYER_BALANCE, player.getCreditBalance()));
+            System.out.println(BET_PROMPT_MESSAGE);
+            Scanner sc = new Scanner(System.in);
+            betAmount = sc.nextInt();
+
+            if (betAmount < 0 || betAmount > player.getCreditBalance()) {
+                System.out.println(INVALID_BET);
+            } else {
+                validBet = true;
+                player.setCreditBalance(player.getCreditBalance() - betAmount);
+                System.out.println(String.format(VALID_BET, betAmount, player.getCreditBalance()));
+            }
+        } while (!validBet);
+
+        return betAmount;
     }
 }

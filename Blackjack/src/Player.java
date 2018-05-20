@@ -3,9 +3,11 @@ import java.util.ArrayList;
 public class Player {
     private ArrayList<Card> playerCards;
     private int handStrength;
+    private int creditBalance;
 
     public Player() {
-         playerCards = new ArrayList<>();
+        playerCards = new ArrayList<>();
+        creditBalance = 1000;
     }
 
     public void addToPlayerDeck(Card playerCard) {
@@ -41,5 +43,18 @@ public class Player {
         } else {
             return handStrength;
         }
+    }
+
+    public void resetGame() {
+        playerCards = new ArrayList<>();
+        handStrength = 0;
+    }
+
+    public int getCreditBalance() {
+        return creditBalance;
+    }
+
+    public void setCreditBalance(int newBalance) {
+        creditBalance = newBalance;
     }
 }
