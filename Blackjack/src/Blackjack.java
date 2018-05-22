@@ -1,5 +1,3 @@
-import com.sun.javafx.binding.StringFormatter;
-
 import java.util.Scanner;
 
 public class Blackjack {
@@ -12,12 +10,14 @@ public class Blackjack {
     public static void main(String[] args) {
         boolean playGame = true;
         Game game = new Game();
+        PlayerProfile player = new PlayerProfile();
+
         while(playGame) {
-            game.newGame();
+            game.newGame(player);
             playGame = promptReplay();
         }
 
-        exitGame(game);
+        exitGame(player);
     }
 
     private static boolean promptReplay() {
@@ -37,7 +37,8 @@ public class Blackjack {
         return input.equals("Y");
     }
 
-    private static void exitGame(Game game) {
-        System.out.println(String.format(EXIT_MESSAGE, game.getNumGamesPlayed(), game.getGamesWon()));
+    private static void exitGame(PlayerProfile player) {
+        System.out.println(String.format(EXIT_MESSAGE, player.getNumGamesPlayed(),
+                player.getGamesWon()));
     }
 }

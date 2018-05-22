@@ -1,11 +1,9 @@
 import java.util.Scanner;
 
 public class Game {
-    private int numGamesPlayed;
-    private int gamesWon;
     private int multiplier;
 
-    private Player player = new Player();
+    private Player player;
     private Player computer = new Player();
     private Deck deck;
     private boolean playerWinFlag;
@@ -21,6 +19,8 @@ public class Game {
     private static String VALID_BET = "Amount Bet: %1$s, Player Credit Balance: %2$s";
     private static String PLAYER_BALANCE = "Player's Current Balance: %1$s";
     private static String INSUFFICIENT_BALANCE = "You do not have enough balance to play. Minimum Bet: %1$s";
+
+    private static String HAND_BELOW_16_MESSAGE = "Your total points is below 16. You have to draw a card.";
 
     private static String WINNING_MESSAGE = "Player Wins, Wins Bet.";
     private static String WINNING_DOUBLE_MESSAGE = "Player Wins, Wins Double Bet.";
@@ -44,13 +44,11 @@ public class Game {
 
 
     public Game() {
-        numGamesPlayed = 0;
-        gamesWon = 0;
         multiplier = 0;
     }
 
-    public void newGame() {
-
+    public void newGame(PlayerProfile playerProfile) {
+        player = playerProfile.getPlayer();
         Card drawnCard;
         int betAmount;
 
@@ -61,14 +59,13 @@ public class Game {
         computerWinFlag = false;
         playerWinFlag = false;
         message = "";
-        numGamesPlayed++;
 
-        if(player.getCreditBalance() < MINIMUM_BET) {
+        if(playerProfile.getCreditBalance() < MINIMUM_BET) {
             System.out.println(String.format(INSUFFICIENT_BALANCE, MINIMUM_BET));
-            System.out.println(String.format(PLAYER_BALANCE, player.getCreditBalance()));
+            System.out.println(String.format(PLAYER_BALANCE, playerProfile.getCreditBalance()));
             return;
         } else {
-            betAmount = playerBet();
+            betAmount = playerBet(playerProfile);
         }
 
         for (int i = 0; i < 2; i++) {
@@ -84,7 +81,7 @@ public class Game {
 
         if(!playerWinFlag && !computerWinFlag) {
             playersTurn();
-            computersTurn();
+            computersTurn(playerProfile);
         }
 
         if(!playerWinFlag && !computerWinFlag) {
@@ -96,14 +93,26 @@ public class Game {
         showMessage();
         System.out.println();
 
+        playerProfile.increaseNumGamesPlayed();
+
         if(playerWinFlag) {
-            gamesWon++;
+            playerProfile.increaseGamesWon();
         }
 
-        player.setCreditBalance(player.getCreditBalance() + betAmount + getMultiplier()*betAmount);
+        playerProfile.setCreditBalance(playerProfile.getCreditBalance() + betAmount + getMultiplier()*betAmount);
 
-        System.out.println(String.format(PLAYER_BALANCE, player.getCreditBalance()));
+        System.out.println(String.format(PLAYER_BALANCE, playerProfile.getCreditBalance()));
         System.out.println();
+
+        if(player.getHandStrength() < 22) {
+            playerProfile.increaseGamesWithoutBust();
+            if(player.getHandStrength() < 18) {
+                playerProfile.increaseFreqBelow18();
+                playerProfile.increaseLowRiskStreak();
+            } else {
+                playerProfile.resetLowRiskStreak();
+            }
+        }
     }
 
 
@@ -136,6 +145,8 @@ public class Game {
         while(playerPrompt && player.getPlayerCards().size() < 5 && player.getHandStrength() < 21) {
             if(askPlayerToDraw()) {
                 drawCard(player);
+            } else if (player.getHandStrength() < 16) {
+                System.out.println(HAND_BELOW_16_MESSAGE);
             } else {
                 playerPrompt = false;
             }
@@ -155,7 +166,7 @@ public class Game {
         }
     }
 
-    private void computersTurn() {
+    private void computersTurn(PlayerProfile playerProfile) {
         while (computer.getHandStrength() < 16 && computer.getPlayerCards().size() < 5) {
             drawCard(computer);
         }
@@ -173,9 +184,10 @@ public class Game {
             }
         }
 
-        if(computer.getHandStrength() >= 16 && computer.getHandStrength() <= 18
+        if(computer.getHandStrength() >= 16 && computer.getHandStrength() < 18
                 && computer.getPlayerCards().size() < 4) {
-            if (deck.getCardDeck().size() == 48) {
+            if (playerProfile.getLowRiskPct() > 50 || playerProfile.getLowRiskStreak() > 1
+                    || deck.getCardDeck().size() == 48) {
                 drawCard(computer);
             }
         }
@@ -247,21 +259,13 @@ public class Game {
         }
     }
 
-    public int getNumGamesPlayed() {
-        return numGamesPlayed;
-    }
-
-    public int getGamesWon() {
-        return gamesWon;
-    }
-
-    private int playerBet() {
+    private int playerBet(PlayerProfile playerProfile) {
         boolean validBet = false;
         String input;
         int betAmount = 0;
 
         do {
-            System.out.println(String.format(PLAYER_BALANCE, player.getCreditBalance()));
+            System.out.println(String.format(PLAYER_BALANCE, playerProfile.getCreditBalance()));
             System.out.println(BET_PROMPT_MESSAGE);
             Scanner sc = new Scanner(System.in);
             input = sc.next();
@@ -271,14 +275,14 @@ public class Game {
 
                 if (betAmount < 0) {
                     System.out.println(NEGATIVE_BET);
-                } else if (betAmount > player.getCreditBalance()) {
+                } else if (betAmount > playerProfile.getCreditBalance()) {
                     System.out.println(OVER_BET);
                 } else if (betAmount < MINIMUM_BET) {
                     System.out.println(String.format(UNDER_BET, MINIMUM_BET));
                 } else {
                     validBet = true;
-                    player.setCreditBalance(player.getCreditBalance() - betAmount);
-                    System.out.println(String.format(VALID_BET, betAmount, player.getCreditBalance()));
+                    playerProfile.setCreditBalance(playerProfile.getCreditBalance() - betAmount);
+                    System.out.println(String.format(VALID_BET, betAmount, playerProfile.getCreditBalance()));
                 }
              } catch (NumberFormatException nfe) {
                 System.out.println(Blackjack.INVALID_COMMAND);

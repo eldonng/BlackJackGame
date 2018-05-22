@@ -3,11 +3,10 @@ import java.util.ArrayList;
 public class Player {
     private ArrayList<Card> playerCards;
     private int handStrength;
-    private int creditBalance;
+    private PlayerProfile profile;
 
     public Player() {
         playerCards = new ArrayList<>();
-        creditBalance = 1000;
     }
 
     public void addToPlayerDeck(Card playerCard) {
@@ -50,15 +49,7 @@ public class Player {
         handStrength = 0;
     }
 
-    public int getCreditBalance() {
-        return creditBalance;
-    }
-
-    public void setCreditBalance(int newBalance) {
-        if(newBalance < 0) {
-            creditBalance = 0;
-        } else {
-            creditBalance = newBalance;
-        }
+    public PlayerProfile getProfile() {
+        return profile;
     }
 }
