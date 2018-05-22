@@ -9,7 +9,7 @@ public class Blackjack {
     private static String PROMPT_PLAYER_MESSAGE = "Do you want to continue playing? (Y/N)";
     private static String EXIT_MESSAGE = "Thank you for playing! Games Played: %1$s, Games Won: %2$s";
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         boolean playGame = true;
         Game game = new Game();
         while(playGame) {
