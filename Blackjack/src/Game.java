@@ -80,29 +80,15 @@ public class Game {
         }
 
         playersTurn();
-        if(playerWinFlag || computerWinFlag) {
-            displayAllHands();
-            System.out.println(message);
-            if(playerWinFlag) {
-                gamesWon++;
-            }
-            return;
-        }
-
         computersTurn();
 
-        if(playerWinFlag || computerWinFlag) {
-            displayAllHands();
-            System.out.println(message);
-            if(playerWinFlag) {
-                gamesWon++;
-            }
-            return;
+        if(!playerWinFlag && !computerWinFlag) {
+            checkWinner();
         }
 
-        checkWinner();
         displayAllHands();
-        System.out.println(message);
+        setMessage(getMultiplier());
+        showMessage();
         System.out.println();
 
         if(playerWinFlag) {
