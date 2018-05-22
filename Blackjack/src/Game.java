@@ -65,7 +65,7 @@ public class Game {
 
         if(player.getCreditBalance() < MINIMUM_BET) {
             System.out.println(String.format(INSUFFICIENT_BALANCE, MINIMUM_BET));
-            System.out.println(PLAYER_BALANCE);
+            System.out.println(String.format(PLAYER_BALANCE, player.getCreditBalance()));
             return;
         } else {
             betAmount = playerBet();
@@ -80,17 +80,12 @@ public class Game {
 
         player.displayPlayerHand();
 
-        if (checkWinningHand()) {
-            displayAllHands();
-            System.out.println(message);
-            if(playerWinFlag) {
-                gamesWon++;
-            }
-            return;
-        }
+        checkWinningHand();
 
-        playersTurn();
-        computersTurn();
+        if(!playerWinFlag && !computerWinFlag) {
+            playersTurn();
+            computersTurn();
+        }
 
         if(!playerWinFlag && !computerWinFlag) {
             checkWinner();
