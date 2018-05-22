@@ -1,2 +1,2 @@
 # BlackJackGame
-BlackJack game to practice coding
+Ban Luck, SG-MY style BlackJack Game
