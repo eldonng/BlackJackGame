@@ -12,11 +12,15 @@ public class Game {
     private boolean computerWinFlag;
     private String message;
 
+    public static int MINIMUM_BET = 20;
+
     private static String BET_PROMPT_MESSAGE ="Please enter the amount you want to bet: ";
-    private static String INVALID_BET = "The amount entered cannot more than your balance, or be a negative number." +
-            "Please try again.";
-    private static String VALID_BET = "Amount Betted: %1$s, Player Credit Balance: %2$s";
+    private static String NEGATIVE_BET = "The amount entered cannot be a negative number. Please try again.";
+    private static String UNDER_BET = "The minimum amount for betting is %1$s. Please try again.";
+    private static String OVER_BET = "The amount entered cannot more than your balance. Please try again.";
+    private static String VALID_BET = "Amount Bet: %1$s, Player Credit Balance: %2$s";
     private static String PLAYER_BALANCE = "Player's Current Balance: %1$s";
+    private static String INSUFFICIENT_BALANCE = "You do not have enough balance to play. Minimum Bet: %1$s";
 
     private static String WINNING_MESSAGE = "Player Wins, Wins Bet.";
     private static String WINNING_DOUBLE_MESSAGE = "Player Wins, Wins Double Bet.";
@@ -30,13 +34,14 @@ public class Game {
 
     private static String DRAW_CARD_PROMPT = "Do you want to draw a card? (Y/N)";
 
-    private static int LOSE_TRIPLE = -3;
-    private static int LOSE_DOUBLE = -2;
-    private static int LOSE_SINGLE = -1;
-    private static int DRAW = 0;
-    private static int WIN_SINGLE = 1;
-    private static int WIN_DOUBLE = 2;
-    private static int WIN_TRIPLE = 3;
+    private static final int LOSE_TRIPLE = -3;
+    private static final int LOSE_DOUBLE = -2;
+    private static final int LOSE_SINGLE = -1;
+    private static final int DRAW = 0;
+    private static final int WIN_SINGLE = 1;
+    private static final int WIN_DOUBLE = 2;
+    private static final int WIN_TRIPLE = 3;
+
 
     public Game() {
         numGamesPlayed = 0;
@@ -58,8 +63,13 @@ public class Game {
         message = "";
         numGamesPlayed++;
 
-
-        betAmount = playerBet();
+        if(player.getCreditBalance() < MINIMUM_BET) {
+            System.out.println(String.format(INSUFFICIENT_BALANCE, MINIMUM_BET));
+            System.out.println(PLAYER_BALANCE);
+            return;
+        } else {
+            betAmount = playerBet();
+        }
 
         for (int i = 0; i < 2; i++) {
             drawnCard = deck.drawRandomCardFromDeck();
@@ -94,6 +104,11 @@ public class Game {
         if(playerWinFlag) {
             gamesWon++;
         }
+
+        player.setCreditBalance(player.getCreditBalance() + betAmount + getMultiplier()*betAmount);
+
+        System.out.println(String.format(PLAYER_BALANCE, player.getCreditBalance()));
+        System.out.println();
     }
 
 
@@ -247,20 +262,31 @@ public class Game {
 
     private int playerBet() {
         boolean validBet = false;
-        int betAmount;
+        String input;
+        int betAmount = 0;
 
         do {
             System.out.println(String.format(PLAYER_BALANCE, player.getCreditBalance()));
             System.out.println(BET_PROMPT_MESSAGE);
             Scanner sc = new Scanner(System.in);
-            betAmount = sc.nextInt();
+            input = sc.next();
 
-            if (betAmount < 0 || betAmount > player.getCreditBalance()) {
-                System.out.println(INVALID_BET);
-            } else {
-                validBet = true;
-                player.setCreditBalance(player.getCreditBalance() - betAmount);
-                System.out.println(String.format(VALID_BET, betAmount, player.getCreditBalance()));
+            try {
+                betAmount = Integer.parseInt(input);
+
+                if (betAmount < 0) {
+                    System.out.println(NEGATIVE_BET);
+                } else if (betAmount > player.getCreditBalance()) {
+                    System.out.println(OVER_BET);
+                } else if (betAmount < MINIMUM_BET) {
+                    System.out.println(String.format(UNDER_BET, MINIMUM_BET));
+                } else {
+                    validBet = true;
+                    player.setCreditBalance(player.getCreditBalance() - betAmount);
+                    System.out.println(String.format(VALID_BET, betAmount, player.getCreditBalance()));
+                }
+             } catch (NumberFormatException nfe) {
+                System.out.println(Blackjack.INVALID_COMMAND);
             }
         } while (!validBet);
 

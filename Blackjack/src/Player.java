@@ -55,6 +55,10 @@ public class Player {
     }
 
     public void setCreditBalance(int newBalance) {
-        creditBalance = newBalance;
+        if(newBalance < 0) {
+            creditBalance = 0;
+        } else {
+            creditBalance = newBalance;
+        }
     }
 }
