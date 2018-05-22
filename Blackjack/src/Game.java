@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Game {
     private int numGamesPlayed;
     private int gamesWon;
+    private int multiplier;
 
     private Player player = new Player();
     private Player computer = new Player();
@@ -29,9 +30,18 @@ public class Game {
 
     private static String DRAW_CARD_PROMPT = "Do you want to draw a card? (Y/N)";
 
+    private static int LOSE_TRIPLE = -3;
+    private static int LOSE_DOUBLE = -2;
+    private static int LOSE_SINGLE = -1;
+    private static int DRAW = 0;
+    private static int WIN_SINGLE = 1;
+    private static int WIN_DOUBLE = 2;
+    private static int WIN_TRIPLE = 3;
+
     public Game() {
         numGamesPlayed = 0;
         gamesWon = 0;
+        multiplier = 0;
     }
 
     public void newGame() {
@@ -42,6 +52,7 @@ public class Game {
         deck = new Deck();
         player.resetGame();
         computer.resetGame();
+        multiplier = 0;
         computerWinFlag = false;
         playerWinFlag = false;
         message = "";
@@ -136,14 +147,14 @@ public class Game {
 
         if(player.getPlayerCards().size() == 5) {
             if(player.getHandStrength() <= 11 || player.getHandStrength() == 21) {
-                message = WINNING_TRIPLE_MESSAGE;
                 playerWinFlag = true;
+                setMultiplier(WIN_TRIPLE);
             } else if(player.getHandStrength() < 21) {
-                message = WINNING_DOUBLE_MESSAGE;
                 playerWinFlag = true;
+                setMultiplier(WIN_DOUBLE);
             } else {
-                message = LOSING_DOUBLE_MESSAGE;
                 computerWinFlag = true;
+                setMultiplier(LOSE_DOUBLE);
             }
         }
     }
@@ -155,14 +166,14 @@ public class Game {
 
         if(computer.getPlayerCards().size() == 5) {
             if(computer.getHandStrength() == 21 || computer.getHandStrength() < 11) {
-                message = LOSING_TRIPLE_MESSAGE;
                 computerWinFlag = true;
+                setMultiplier(LOSE_TRIPLE);
             } else if (computer.getHandStrength() < 21) {
-                message = LOSING_DOUBLE_MESSAGE;
                 computerWinFlag = true;
+                setMultiplier(LOSE_DOUBLE);
             } else {
-                message = WINNING_DOUBLE_MESSAGE;
                 playerWinFlag = true;
+                setMultiplier(WIN_DOUBLE);
             }
         }
 
@@ -178,20 +189,20 @@ public class Game {
     private boolean checkWinningHand() {
         if(checkTwoAces(player) && !checkTwoAces(computer)) {
             playerWinFlag = true;
-            message = WINNING_TRIPLE_MESSAGE;
+            setMultiplier(WIN_TRIPLE);
         } else if (!checkTwoAces(player) && checkTwoAces(computer)) {
             computerWinFlag = true;
-            message = LOSING_TRIPLE_MESSAGE;
+            setMultiplier(LOSE_TRIPLE);
         } else if (checkTwoAces(player) && checkTwoAces(computer)) {
-            message = DRAW_GAME_MESSAGE;
+           setMultiplier(DRAW);
         } else if (checkBlackJack(player) && !checkBlackJack(computer)) {
             playerWinFlag = true;
-            message = WINNING_DOUBLE_MESSAGE;
+            setMultiplier(WIN_DOUBLE);
         } else if (!checkBlackJack(player) && checkBlackJack(computer)) {
             computerWinFlag = true;
-            message = LOSING_DOUBLE_MESSAGE;
+            setMultiplier(LOSE_DOUBLE);
         } else if (checkBlackJack(player) && checkBlackJack(computer)) {
-            message = DRAW_GAME_MESSAGE;
+            setMultiplier(DRAW);
         }
 
         return checkBlackJack(player) || checkBlackJack(computer)|| checkTwoAces(player) || checkTwoAces(computer);
@@ -217,26 +228,26 @@ public class Game {
     private void checkWinner() {
         if (player.getHandStrength() != 21 && computer.getHandStrength() == 21) {
             computerWinFlag = true;
-            message = LOSING_DOUBLE_MESSAGE;
+            setMultiplier(LOSE_DOUBLE);
         } else if (player.getHandStrength() == 21 && computer.getHandStrength() != 21) {
             playerWinFlag = true;
-            message = WINNING_DOUBLE_MESSAGE;
-        } else if (player.getHandStrength() > 21 && computer.getHandStrength() <= 21) {
+            setMultiplier(WIN_DOUBLE);
+        } else if (player.getHandStrength() > 21 && computer.getHandStrength() < 21) {
             computerWinFlag = true;
-            message = LOSING_MESSAGE;
-        } else if (player.getHandStrength() <= 21 && computer.getHandStrength() > 21) {
+            setMultiplier(LOSE_SINGLE);
+        } else if (player.getHandStrength() < 21 && computer.getHandStrength() > 21) {
             playerWinFlag = true;
-            message = WINNING_MESSAGE;
+            setMultiplier(WIN_SINGLE);
         } else if (player.getHandStrength() > 21 && computer.getHandStrength() > 21) {
-            message = DRAW_GAME_MESSAGE;
+            setMultiplier(DRAW);
         } else if (player.getHandStrength() < computer.getHandStrength()) {
             computerWinFlag = true;
-            message = LOSING_MESSAGE;
+            setMultiplier(LOSE_SINGLE);
         } else if (player.getHandStrength() > computer.getHandStrength()) {
             playerWinFlag = true;
-            message = WINNING_MESSAGE;
+            setMultiplier(WIN_SINGLE);
         } else if (player.getHandStrength() == computer.getHandStrength()) {
-            message = DRAW_GAME_MESSAGE;
+            setMultiplier(DRAW);
         }
     }
 
@@ -268,5 +279,30 @@ public class Game {
         } while (!validBet);
 
         return betAmount;
+    }
+
+    public void setMultiplier(int multiplier) {
+        this.multiplier = multiplier;
+    }
+
+    public int getMultiplier() {
+        return multiplier;
+    }
+
+    public void setMessage(int multiplier) {
+        switch(multiplier) {
+            case LOSE_TRIPLE: message = LOSING_TRIPLE_MESSAGE; break;
+            case LOSE_DOUBLE: message = LOSING_DOUBLE_MESSAGE; break;
+            case LOSE_SINGLE: message = LOSING_MESSAGE; break;
+            case DRAW: message = DRAW_GAME_MESSAGE; break;
+            case WIN_SINGLE: message = WINNING_MESSAGE; break;
+            case WIN_DOUBLE: message = WINNING_DOUBLE_MESSAGE; break;
+            case WIN_TRIPLE: message = WINNING_TRIPLE_MESSAGE; break;
+            default: message = ""; //to-do: exception handling
+        }
+    }
+
+    public void showMessage() {
+        System.out.println(message);
     }
 }
