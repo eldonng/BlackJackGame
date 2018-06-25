@@ -2,26 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f7162e8-94ec-4fed-a8ba-bf3a4e0b658a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Blackjack/src/main/storage/PlayerProfileStorage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Blackjack/src/main/storage/XmlSerializablePlayerProfile.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/Blackjack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/Card$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/Card$Rank.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/Card$Suit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/Card.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/Deck.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/Game.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/Player.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/PlayerProfile.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Blackjack/src/Blackjack.java" afterPath="$PROJECT_DIR$/Blackjack/src/main/Blackjack.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Blackjack/src/Card.java" afterPath="$PROJECT_DIR$/Blackjack/src/main/Card.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Blackjack/src/Deck.java" afterPath="$PROJECT_DIR$/Blackjack/src/main/Deck.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Blackjack/src/Game.java" afterPath="$PROJECT_DIR$/Blackjack/src/main/Game.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Blackjack/src/Player.java" afterPath="$PROJECT_DIR$/Blackjack/src/main/Player.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Blackjack/src/PlayerProfile.java" afterPath="$PROJECT_DIR$/Blackjack/src/main/PlayerProfile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/main/Blackjack.class" afterPath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/main/Blackjack.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/main/Game.class" afterPath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/main/Game.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/main/PlayerProfile.class" afterPath="$PROJECT_DIR$/Blackjack/out/production/BlackJackGame/main/PlayerProfile.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Blackjack/src/main/Blackjack.java" afterPath="$PROJECT_DIR$/Blackjack/src/main/Blackjack.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Blackjack/src/main/Game.java" afterPath="$PROJECT_DIR$/Blackjack/src/main/Game.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Blackjack/src/main/PlayerProfile.java" afterPath="$PROJECT_DIR$/Blackjack/src/main/PlayerProfile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/profile.xml" afterPath="$PROJECT_DIR$/data/profile.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,8 +58,8 @@
       <file leaf-file-name="Blackjack.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Blackjack/src/main/Blackjack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="391">
+              <caret line="29" column="34" lean-forward="true" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -83,18 +70,18 @@
       <file leaf-file-name="PlayerProfile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Blackjack/src/main/PlayerProfile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+            <state relative-caret-position="170">
+              <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Blackjack/src/main/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2210">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="391">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -112,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerProfileStorage.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlayerProfileStorage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Blackjack/src/main/storage/PlayerProfileStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+            <state relative-caret-position="1190">
+              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1383#1384#0" expanded="true" />
@@ -155,10 +142,11 @@
         <option value="$PROJECT_DIR$/Blackjack/src/XmlSerializablePlayerProfile.java" />
         <option value="$PROJECT_DIR$/Blackjack/src/storage/XmlSerializablePlayerProfile.java" />
         <option value="$PROJECT_DIR$/Blackjack/src/main/Card.java" />
-        <option value="$PROJECT_DIR$/Blackjack/src/main/PlayerProfile.java" />
         <option value="$PROJECT_DIR$/Blackjack/src/main/storage/XmlSerializablePlayerProfile.java" />
-        <option value="$PROJECT_DIR$/Blackjack/src/main/Blackjack.java" />
         <option value="$PROJECT_DIR$/Blackjack/src/main/storage/PlayerProfileStorage.java" />
+        <option value="$PROJECT_DIR$/Blackjack/src/main/PlayerProfile.java" />
+        <option value="$PROJECT_DIR$/Blackjack/src/main/Blackjack.java" />
+        <option value="$PROJECT_DIR$/Blackjack/src/main/Game.java" />
       </list>
     </option>
   </component>
@@ -403,7 +391,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5068929" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5068929" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -759,22 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Blackjack/src/main/PlayerProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Blackjack/src/main/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2210">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Blackjack/src/main/storage/XmlSerializablePlayerProfile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -785,25 +757,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Blackjack/src/main/storage/PlayerProfileStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1383#1384#0" expanded="true" />
+            <element signature="e#1414#1415#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Blackjack/src/main/PlayerProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Blackjack/src/main/Blackjack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="391">
+          <caret line="29" column="34" lean-forward="true" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Blackjack/src/main/storage/PlayerProfileStorage.java">
+    <entry file="file://$PROJECT_DIR$/Blackjack/src/main/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1383#1384#0" expanded="true" />
-            <element signature="e#1414#1415#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="391">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

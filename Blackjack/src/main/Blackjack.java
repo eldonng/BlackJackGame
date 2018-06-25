@@ -24,12 +24,14 @@ public class Blackjack {
             PlayerProfileStorage.createFile();
         }
 
+        game.freeCredits(profile);
+
         while(playGame) {
             game.newGame(profile);
+            PlayerProfileStorage.saveToFile(profile);
             playGame = promptReplay();
         }
 
-        PlayerProfileStorage.saveToFile(profile);
         exitGame(profile);
     }
 

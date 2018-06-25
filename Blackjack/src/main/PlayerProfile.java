@@ -14,7 +14,7 @@ public class PlayerProfile {
 
     public PlayerProfile() {
         player = new Player();
-        creditBalance = 1000;
+        creditBalance = 0;
         numGamesPlayed = 0;
         gamesWon = 0;
         highestWin = 0;

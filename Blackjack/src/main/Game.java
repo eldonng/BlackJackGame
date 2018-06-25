@@ -19,22 +19,23 @@ public class Game {
     private static String UNDER_BET = "The minimum amount for betting is %1$s. Please try again.";
     private static String OVER_BET = "The amount entered cannot more than your balance. Please try again.";
     private static String VALID_BET = "Amount Bet: %1$s, main.Player Credit Balance: %2$s";
-    private static String PLAYER_BALANCE = "main.Player's Current Balance: %1$s";
+    private static String PLAYER_BALANCE = "Player's Current Balance: %1$s";
     private static String INSUFFICIENT_BALANCE = "You do not have enough balance to play. Minimum Bet: %1$s";
 
     private static String HAND_BELOW_16_MESSAGE = "Your total points is below 16. You have to draw a card.";
 
-    private static String WINNING_MESSAGE = "main.Player Wins, Wins Bet.";
-    private static String WINNING_DOUBLE_MESSAGE = "main.Player Wins, Wins Double Bet.";
-    private static String WINNING_TRIPLE_MESSAGE = "main.Player Wins, Wins Triple Bet.";
+    private static String WINNING_MESSAGE = "Player Wins, Wins Bet.";
+    private static String WINNING_DOUBLE_MESSAGE = "Player Wins, Wins Double Bet.";
+    private static String WINNING_TRIPLE_MESSAGE = "Player Wins, Wins Triple Bet.";
 
-    private static String LOSING_MESSAGE = "main.Player Loses, Loses Bet.";
-    private static String LOSING_DOUBLE_MESSAGE = "main.Player Loses, Loses Double Bet.";
-    private static String LOSING_TRIPLE_MESSAGE = "main.Player Loses, Loses Triple Bet.";
+    private static String LOSING_MESSAGE = "Player Loses, Loses Bet.";
+    private static String LOSING_DOUBLE_MESSAGE = "Player Loses, Loses Double Bet.";
+    private static String LOSING_TRIPLE_MESSAGE = "Player Loses, Loses Triple Bet.";
 
     private static String DRAW_GAME_MESSAGE = "Draw main.Game. main.Player keeps bet.";
 
     private static String DRAW_CARD_PROMPT = "Do you want to draw a card? (Y/N)";
+    private static String WELCOME_GIFT_MESSAGE = "Welcome! Here is a 1000 credit for you to play!";
 
     private static final int LOSE_TRIPLE = -3;
     private static final int LOSE_DOUBLE = -2;
@@ -314,6 +315,12 @@ public class Game {
             case WIN_TRIPLE: message = WINNING_TRIPLE_MESSAGE; break;
             default: message = ""; //to-do: exception handling
         }
+    }
+
+    public void freeCredits(PlayerProfile profile) {
+        profile.setCreditBalance(profile.getCreditBalance() + 1000);
+        message = WELCOME_GIFT_MESSAGE;
+        showMessage();
     }
 
     public void showMessage() {
