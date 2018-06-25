@@ -1,2 +1,2 @@
 # BlackJackGame
-Ban Luck, SG-MY style BlackJack Game
+Ban Luck, SG-MY style BlackJack main.Game

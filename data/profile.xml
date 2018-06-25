@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xmlSerializablePlayerProfile>
+    <creditBalance>900</creditBalance>
+    <numGamesPlayed>1</numGamesPlayed>
+    <gamesWon>0</gamesWon>
+    <highestWin>0</highestWin>
+    <freqBelow18>1</freqBelow18>
+    <gamesWithoutBust>1</gamesWithoutBust>
+    <lowRiskStreak>1</lowRiskStreak>
+    <lowRiskPct>100.0</lowRiskPct>
+</xmlSerializablePlayerProfile>

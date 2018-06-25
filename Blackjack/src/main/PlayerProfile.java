@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package main;
 
 public class PlayerProfile {
     private Player player;
@@ -20,8 +20,21 @@ public class PlayerProfile {
         highestWin = 0;
         freqBelow18 = 0;
         gamesWithoutBust = 0;
-        lowRiskPct = 0;
         lowRiskStreak = 0;
+        lowRiskPct = 0;
+    }
+
+    public PlayerProfile(int creditBalance, int numGamesPlayed, int gamesWon, int highestWin, int freqBelow18,
+                         int gamesWithoutBust, int lowRiskStreak, float lowRiskPct) {
+        player = new Player();
+        this.creditBalance = creditBalance;
+        this.numGamesPlayed = numGamesPlayed;
+        this.gamesWon = gamesWon;
+        this.highestWin = highestWin;
+        this.freqBelow18 = freqBelow18;
+        this.gamesWithoutBust = gamesWithoutBust;
+        this.lowRiskStreak = lowRiskStreak;
+        this.lowRiskPct = lowRiskPct;
     }
 
     public Player getPlayer() {
