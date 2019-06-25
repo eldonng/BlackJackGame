@@ -3,14 +3,12 @@ package main;
 import java.util.Scanner;
 import main.storage.*;
 
-import javax.xml.bind.JAXBException;
-
 public class Blackjack {
 
     public static String INVALID_COMMAND = "Invalid Command, please try again.";
 
     private static String PROMPT_PLAYER_MESSAGE = "Do you want to continue playing? (Y/N)";
-    private static String EXIT_MESSAGE = "Thank you for playing! Games Played: %1$s, Games Won: %2$s";
+    private static String EXIT_MESSAGE = "Thank you for playing! Total Games Played: %1$s, Games Won: %2$s";
 
     public static void main(String[] args) {
         boolean playGame = true;
